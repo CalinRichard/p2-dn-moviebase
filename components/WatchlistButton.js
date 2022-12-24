@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import useSWR, { useSWRConfig } from 'swr';
 import { fetcher } from 'utils/api';
 
-export default function HistoryButton() {
+export default function WatchListButton() {
   const { id } = useRouter().query;
   const { data } = useSWR(`/api/watchlist/${id}`);
   const { mutate } = useSWRConfig();
