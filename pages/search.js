@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import useSWR from 'swr';
+import Image from 'next/image';
+import { buildImageUrl } from 'utils/api';
 import {
   Input,
   IconButton,
   Container,
-  UnorderedList,
-  ListItem,
   Progress,
   Text,
   InputGroup,
@@ -15,6 +15,13 @@ import {
   VStack,
   Button,
   Badge,
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  TableContainer,
 } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
 import Layout from 'components/Layout';
@@ -54,6 +61,7 @@ function SearchBar() {
     </InputGroup>
   );
 }
+
 function SearchResults() {
   const { terms } = useRouter().query;
   const { data, error } = useSWR(terms && `/api/search?terms=${terms}`);
@@ -75,21 +83,35 @@ function SearchResults() {
     return <Text>No results</Text>;
   }
   return (
-    <UnorderedList stylePosition="inside">
-      {data.results.map(({ id, title, release_date }) => (
-        <ListItem key={id}>
-          <Link href={`/movies/${id}`} passHref legacyBehavior>
-            <Button
-              as="a"
-              variant="link"
-              rightIcon={<Badge>{release_date}</Badge>}
-            >
-              <Text as="span">{title} </Text>
-            </Button>
-          </Link>
-        </ListItem>
-      ))}
-    </UnorderedList>
+    <TableContainer>
+      <Table variant="striped">
+        <Tbody>
+          <Tr>
+          {data.results.map(({ id, title, release_date, poster_path }) => (
+            <Th key={id}>
+              <Image
+              src={buildImageUrl(poster_path, 'w300')}
+              alt="Movie poster"
+              layout="responsive"
+              width="300"
+              height="550"
+              objectFit="contain"
+              unoptimized
+              />
+              <Link href={`/movies/${id}`} passHref legacyBehavior>
+              <Button
+                as="a"
+                variant="link"
+                rightIcon={<Badge>{release_date}</Badge>}>
+                <Text as="span">{title} </Text>
+              </Button>
+              </Link>
+            </Th>
+          ))};
+          </Tr>
+        </Tbody>
+      </Table>
+    </TableContainer>
   );
 }
 
