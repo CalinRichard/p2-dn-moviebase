@@ -89,6 +89,17 @@ function SearchResults() {
           <Tr>
           {data.results.map(({ id, title, release_date, poster_path }) => (
             <Th key={id}>
+              <Link href={`/movies/${id}`} passHref legacyBehavior>
+              <Button
+                color="yellow"
+                size="lg"
+                m="6"
+                as="a"
+                variant="link"
+                rightIcon={<Badge color="yellow">{release_date}</Badge>}>
+                <Text as="span">{title} </Text>
+              </Button>
+              </Link>
               <Image
               src={buildImageUrl(poster_path, 'w300')}
               alt="Movie poster"
@@ -98,14 +109,6 @@ function SearchResults() {
               objectFit="contain"
               unoptimized
               />
-              <Link href={`/movies/${id}`} passHref legacyBehavior>
-              <Button
-                as="a"
-                variant="link"
-                rightIcon={<Badge>{release_date}</Badge>}>
-                <Text as="span">{title} </Text>
-              </Button>
-              </Link>
             </Th>
           ))};
           </Tr>

@@ -1,12 +1,11 @@
-import { Center, Heading } from '@chakra-ui/react';
-import Layout from 'components/Layout';
+import Layout from "components/Layout";
+import SampleHomepage from "components/SampleHomepage";
 
 export default function Home() {
   return (
-    <Layout title="Moviebase">
-      <Center h="full">
-        <Heading as="h2">Moviebase is up and running</Heading>
-      </Center>
+    <Layout title="Moviebase" selected="/">
+      <SampleHomepage page="watchlist" text="Watchlist" />
+      <SampleHomepage page="history" text="History" />
     </Layout>
   );
 }

@@ -22,7 +22,12 @@ export default async function handler(req, res) {
   } else if (method === 'POST') {
     const movie = await fetcher(getMovieUrl(id));
 
-    const history = new History({ id, title: movie.title });
+    const history = new History({ 
+      id,
+      title: movie.title,
+      overview: movie.overview,
+      poster_path: movie.poster_path, 
+    });
     await history.save();
 
     res.status(200).json({ found: true });

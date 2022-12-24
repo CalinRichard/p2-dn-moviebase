@@ -25,7 +25,7 @@ const WatchlistPage = () => {
     );
   }
   if (!data) {
-    return <Progress size="lg" isIndeterminate />;
+    return <Progress isIndeterminate />;
   }
 
   if (!data.length) {
