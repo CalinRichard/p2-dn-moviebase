@@ -17,10 +17,12 @@ import {
 } from '@chakra-ui/react';
 import Layout from 'components/Layout';
 import HistoryButton from 'components/HistoryButton';
+import WatchlistButton from 'components/WatchlistButton';
 
 const MovieContent = () => {
   const { id } = useRouter().query;
   const { data, error } = useSWR(id && `/api/movies/${id}`);
+
 
   if (error) {
     return (
@@ -77,6 +79,7 @@ const MovieContent = () => {
           ))}
         </Stack>
         <Box>{data.overview}</Box>
+            <WatchlistButton />
       </Stack>
     </Stack>
   );

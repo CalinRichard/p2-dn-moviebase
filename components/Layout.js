@@ -81,6 +81,8 @@ export default function Layout({ title, children }) {
     <>
       <Head>
         {title && <title>{title}</title>}
+        {console.log("title: " + title)}
+        
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Grid minH="100vh">
