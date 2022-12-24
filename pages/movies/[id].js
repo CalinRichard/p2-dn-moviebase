@@ -64,7 +64,7 @@ const MovieContent = () => {
         <HStack justify="space-between">
           <Heading as="h2">{data.title}</Heading>
           <Box>
-            <Tag colorScheme="purple" variant="solid">
+            <Tag colorScheme="yellow" variant="solid">
               {data.release_date}
             </Tag>
           </Box>
@@ -73,7 +73,7 @@ const MovieContent = () => {
 
         <Stack direction="row">
           {data.genres?.map((genre) => (
-            <Badge key={genre.id} colorScheme="purple" variant="outline">
+            <Badge key={genre.id} colorScheme="orange" variant="outline">
               {genre.name}
             </Badge>
           ))}

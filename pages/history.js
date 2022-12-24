@@ -14,8 +14,7 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import useSWR from "swr";
-import dateFormat from "utils/dateFormat";
-import HistoryForm from "components/HistoryForm";
+
 
 const HistoryPage = () => {
   const { data, error } = useSWR(`/api/history`);
@@ -40,37 +39,32 @@ const HistoryPage = () => {
   }
 
   return (
-    <>
-      <TableContainer w={["100%", , "95%", "90%", "80%", "60%"]}>
-        <Table variant="striped" colorScheme="blue">
-          <Thead>
-            <Tr>
-              <Th>No.</Th>
-              <Th>Title</Th>
-              <Th>Watched</Th>
-              <Th>Location</Th>
-              <Th>Rating</Th>
-            </Tr>
-          </Thead>
-          <Tbody>
-            {data.map(({ id, title, date, location, rating }, index) => (
-              <Tr key={id}>
-                <Td>{index + 1}</Td>
-                <Td>
-                  <Link href={`/movies/${id}`} passHref legacyBehavior>
-                    <Text as="a">{title}</Text>
-                  </Link>
-                </Td>
-                <Td>{dateFormat(date)}</Td>
-                <Td>{location}</Td>
-                <Td>{rating?.toFixed(1)}</Td>
-              </Tr>
-            ))}
-          </Tbody>
-        </Table>
-      </TableContainer>
-      <HistoryForm />
-    </>
+    <TableContainer w="80%">
+    <Table variant="striped">
+      <Thead>
+        <Tr>
+          <Th>No.</Th>
+          <Th>Title</Th>
+          <Th>Release Date</Th>
+        </Tr>
+      </Thead>
+      <Tbody>
+        {data.map(({ id, title, date }, index) => (
+          <Tr key={id}>
+            <Td>{index + 1}</Td>
+            <Td>
+              <Link href={`/movies/${id}`} passHref legacyBehavior>
+                <Text as="a">{title}</Text>
+              </Link>
+            </Td>
+            <Td>
+              {date}
+            </Td>
+          </Tr>
+        ))}
+      </Tbody>
+    </Table>
+  </TableContainer>
   );
 };
 

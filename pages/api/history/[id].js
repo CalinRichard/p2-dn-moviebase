@@ -19,7 +19,7 @@ export default async function handler(req, res) {
     } else {
       res.status(404).json({ found: false });
     }
-  } else if (method === 'PUT') {
+  } else if (method === 'POST') {
     const movie = await fetcher(getMovieUrl(id));
 
     const history = new History({ id, title: movie.title });

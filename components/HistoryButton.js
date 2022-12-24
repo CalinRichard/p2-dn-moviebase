@@ -13,7 +13,7 @@ export default function HistoryButton() {
     <Tooltip label={data?.found ? 'Remove from history' : 'Add to history'}>
       <IconButton
         isLoading={!data}
-        colorScheme={data?.found ? 'purple' : 'gray'}
+        colorScheme={data?.found ? 'yellow' : 'gray'}
         size="sm"
         onClick={() => {
           mutate(`/api/history/${id}`, () =>

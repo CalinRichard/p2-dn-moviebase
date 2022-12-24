@@ -94,7 +94,7 @@ function SearchResults() {
               alt="Movie poster"
               layout="responsive"
               width="300"
-              height="550"
+              height="450"
               objectFit="contain"
               unoptimized
               />
